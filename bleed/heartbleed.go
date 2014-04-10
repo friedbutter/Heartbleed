@@ -19,7 +19,7 @@ type Target struct {
 var Safe = errors.New("heartbleed: no response or payload not found")
 var Timeout = errors.New("heartbleed: timeout")
 
-var padding = []byte("YELLOW SUBMARINE")
+var padding = []byte("")
 
 // struct {
 //    uint8  type;
@@ -33,7 +33,7 @@ func buildEvilMessage(payload []byte) []byte {
 	if err != nil {
 		panic(err)
 	}
-	err = binary.Write(&buf, binary.BigEndian, uint16(len(payload)+100))
+	err = binary.Write(&buf, binary.BigEndian, uint16(len(payload)))
 	if err != nil {
 		panic(err)
 	}
